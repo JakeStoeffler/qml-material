@@ -38,6 +38,7 @@ Item {
 
     property color accentColor: Theme.accentColor
     property color errorColor: "#F44336"
+    property color textColor: Theme.light.textColor
 
     property alias model: listView.model
 
@@ -47,6 +48,7 @@ Item {
 
     property alias selectedIndex: listView.currentIndex
     property int maxVisibleItems: 4
+    property int dropdownWidth: -1
 
     property alias placeholderText: fieldPlaceholder.text
     property alias helperText: helperTextLabel.text
@@ -54,6 +56,8 @@ Item {
     property bool floatingLabel: false
     property bool hasError: false
     property bool hasHelperText: helperText.length > 0
+    property bool alignDropdownWithSelected: true
+    property bool highlightSelected: false
 
     readonly property rect inputRect: Qt.rect(spinBox.x, spinBox.y, spinBox.width, spinBox.height)
 
@@ -62,21 +66,26 @@ Item {
     Ink {
         anchors.fill: parent
         onClicked: {
-            listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
-            var offset = listView.currentItem.itemLabel.mapToItem(menu, 0, 0)
-            menu.open(label, 0, -offset.y)
+            var yOffset = 0;
+            if (alignDropdownWithSelected) {
+                listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
+                yOffset = -listView.currentItem.itemLabel.mapToItem(menu, 0, 0).y
+            } else {
+                listView.positionViewAtBeginning()
+            }
+            menu.open(label, 0, yOffset)
         }
     }
 
     Item {
         id: spinBox
 
-        height: Units.dp(24)
+        height: Units.dp(18)
         width: parent.width
 
         y: {
             if(!floatingLabel)
-                return Units.dp(16)
+                return Units.dp(0)
             if(floatingLabel && !hasHelperText)
                 return Units.dp(40)
             return Units.dp(28)
@@ -87,14 +96,16 @@ Item {
 
             height: parent.height
             width: parent.width + Units.dp(5)
+            spacing: 0
 
             Label {
                 id: label
 
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignVCenter
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
                 text: (listView.currentItem) ? listView.currentItem.text : ""
+                color: textColor
                 style: "subheading"
                 elide: Text.ElideRight
             }
@@ -116,7 +127,7 @@ Item {
 
             anchor: Item.TopLeft
 
-            width: spinBox.width
+            width: dropdownWidth > 0 ? dropdownWidth : spinBox.width
 
             //If there are more than max items, show an extra half item so
             // it's clear the user can scroll
@@ -134,7 +145,7 @@ Item {
                     id: delegateItem
 
                     text: textRole ? model[textRole] : modelData
-
+                    textColor: (listView.currentIndex == index) ? accentColor : Theme.light.textColor
                     onClicked: {
                         itemSelected(index)
                         listView.currentIndex = index
