@@ -52,6 +52,7 @@ Item {
 
     property alias placeholderText: fieldPlaceholder.text
     property alias helperText: helperTextLabel.text
+    property string labelText: "" // if not empty, this will be used for the label text
 
     property bool floatingLabel: false
     property bool hasError: false
@@ -104,7 +105,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
-                text: (listView.currentItem) ? listView.currentItem.text : ""
+                text: (labelText !== "") ? labelText : ((listView.currentItem) ? listView.currentItem.text : "")
                 color: textColor
                 style: "subheading"
                 elide: Text.ElideRight
