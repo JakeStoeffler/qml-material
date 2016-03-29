@@ -133,7 +133,7 @@ SliderStyle {
     handle: Item {
         anchors.centerIn: parent
         implicitHeight: Units.dp(8)
-        implicitWidth: Units.dp(8)
+        implicitWidth: Units.dp(16)
 
         Loader {
             anchors.horizontalCenter: parent.horizontalCenter
@@ -151,7 +151,7 @@ SliderStyle {
                        "transparent"
             radius: implicitHeight / 2
             Rectangle {
-                property var diameter: control.enabled ? Units.dp(16) : Units.dp(12)
+                property var diameter: control.enabled ? Units.dp(24) : Units.dp(18)
                 anchors.centerIn: parent
                 color: control.value === control.minimumValue ?
                            Theme.backgroundColor : style.color
