@@ -35,6 +35,7 @@ View {
     property bool opened
     property int duration: 2000
     property bool fullWidth: Device.type === Device.phone || Device.type === Device.phablet
+    property alias font: snackText.font
 
     signal clicked
 
