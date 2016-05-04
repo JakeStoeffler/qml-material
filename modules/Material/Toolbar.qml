@@ -74,18 +74,6 @@ View {
     fullWidth: true
     clipContent: true
 
-    Behavior on decorationColor {
-        ColorAnimation { duration: MaterialAnimation.pageTransitionDuration }
-    }
-
-    Behavior on height {
-        NumberAnimation { duration: MaterialAnimation.pageTransitionDuration }
-    }
-
-    Behavior on opacity {
-        NumberAnimation { duration: MaterialAnimation.pageTransitionDuration }
-    }
-
     function pop(page) {
         stack.pop(page.actionBar)
 
@@ -135,10 +123,6 @@ View {
         id: stack
         height: actionBarHeight
 
-        Behavior on height {
-            NumberAnimation { duration: MaterialAnimation.pageTransitionDuration }
-        }
-
         anchors {
             left: parent.left
             right: page && page.rightSidebar
@@ -157,10 +141,6 @@ View {
                ? page.rightSidebar.width
                : 0
 
-        Behavior on height {
-            NumberAnimation { duration: MaterialAnimation.pageTransitionDuration }
-        }
-
         anchors {
             right: clientSideDecorations ? windowControls.left : parent.right
             rightMargin: page.rightSidebar ? page.rightSidebar.anchors.rightMargin : 0
@@ -171,50 +151,6 @@ View {
 
     Controls.StackViewDelegate {
         id: toolbarDelegate
-
-        pushTransition: Controls.StackViewTransition {
-            SequentialAnimation {
-                id: actionBarShowAnimation
-
-                ParallelAnimation {
-                    NumberAnimation {
-                        duration: MaterialAnimation.pageTransitionDuration
-                        target: enterItem
-                        property: "opacity"
-                        from: 0
-                        to: 1
-                    }
-
-                    NumberAnimation {
-                        duration: MaterialAnimation.pageTransitionDuration
-                        target: enterItem
-                        property: "y"
-                        from: enterItem.height
-                        to: 0
-                    }
-                }
-            }
-            SequentialAnimation {
-                id: previousHideAnimation
-
-                ParallelAnimation {
-
-                    NumberAnimation {
-                        duration: MaterialAnimation.pageTransitionDuration
-                        target: exitItem
-                        property: "opacity"
-                        to: 0
-                    }
-
-                    NumberAnimation {
-                        duration: MaterialAnimation.pageTransitionDuration
-                        target: exitItem
-                        property: "y"
-                        to: exitItem ? -exitItem.height : 0
-                    }
-                }
-            }
-        }
     }
 
     Row {
