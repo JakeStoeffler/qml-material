@@ -78,8 +78,8 @@ Item {
         }
     }
 
-    Tooltip {
-        text: action ? action.name : ""
-        mouseArea: ink
-    }
+//    Tooltip {
+//        text: action ? action.name : ""
+//        mouseArea: ink
+//    }
 }
