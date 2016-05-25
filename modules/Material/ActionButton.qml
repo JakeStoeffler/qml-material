@@ -122,7 +122,7 @@ Controls.Button {
             }
         }
         label: Item {
-            implicitHeight: isMiniSize ? Units.dp(40) : Units.dp(56)
+            implicitHeight: isMiniSize ? Units.dp(44) : Units.dp(56)
             implicitWidth: implicitHeight
             Icon {
                 id: icon
