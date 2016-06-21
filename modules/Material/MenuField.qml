@@ -39,6 +39,7 @@ Item {
     property color accentColor: Theme.accentColor
     property color errorColor: "#F44336"
     property color textColor: Theme.light.textColor
+    property color tintColor: Qt.rgba(0,0,0,0.05)
 
     property alias model: listView.model
 
@@ -58,7 +59,7 @@ Item {
     property bool hasError: false
     property bool hasHelperText: helperText.length > 0
     property bool alignDropdownWithSelected: true
-    property bool highlightSelected: false
+    property bool tintSelected: false
 
     readonly property rect inputRect: Qt.rect(spinBox.x, spinBox.y, spinBox.width, spinBox.height)
 
@@ -147,6 +148,7 @@ Item {
 
                     text: textRole ? model[textRole] : modelData
                     textColor: (listView.currentIndex == index) ? accentColor : Theme.light.textColor
+                    tintColor: (field.tintSelected && listView.currentIndex == index) ? field.tintColor : Qt.rgba(0,0,0,0)
                     onClicked: {
                         itemSelected(index)
                         listView.currentIndex = index
