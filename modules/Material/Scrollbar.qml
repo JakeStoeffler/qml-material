@@ -80,6 +80,12 @@ Item {
         }
     }
 
+    function flashScrollbar() {
+        showAnimation.start()
+        showAnimation.complete()
+        hideAnimation.start()
+    }
+
     onOrientationChanged: {
         if (orientation == Qt.Vertical) {
             width = thickness

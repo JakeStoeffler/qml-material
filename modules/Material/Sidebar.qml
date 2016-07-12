@@ -67,6 +67,7 @@ View {
     property string mode: "left" // or "right"
     property alias header: headerItem.text
     property alias contentY: flickable.contentY
+    property alias scrollbar: scrollbar
 
     property color borderColor: style === "dark" ? Qt.rgba(0.5,0.5,0.5,0.5) : Theme.light.dividerColor
 
@@ -153,6 +154,7 @@ View {
         }
 
         Scrollbar {
+            id: scrollbar
             flickableItem: flickable
         }
     }
