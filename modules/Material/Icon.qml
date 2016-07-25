@@ -62,8 +62,8 @@ Item {
 
     Rectangle {
         id: colorRect
-        width: 100
-        height: 100
+        width: 10
+        height: 10
         color: icon.color
         visible: false
         layer.enabled: true
@@ -95,18 +95,18 @@ Item {
         }
 
         layer.enabled: colorize
-        layer.samplerName: "maskSource"
         layer.effect: ShaderEffect {
             property var colorSource: colorRect
             fragmentShader: "
                 uniform lowp sampler2D colorSource;
-                uniform lowp sampler2D maskSource;
+                uniform lowp sampler2D source;
                 uniform lowp float qt_Opacity;
                 varying highp vec2 qt_TexCoord0;
                 void main() {
-                    lowp vec4 vclr = texture2D(colorSource, qt_TexCoord0);
-                    lowp float a = texture2D(maskSource, qt_TexCoord0).a;
-                    gl_FragColor = vec4(a*vclr.r, a*vclr.g, a*vclr.b, a*vclr.a);
+                    gl_FragColor =
+                        texture2D(colorSource, qt_TexCoord0)
+                        * texture2D(source, qt_TexCoord0).a
+                        * qt_Opacity;
                 }
             "
         }

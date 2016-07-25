@@ -61,6 +61,8 @@ Controls.Button {
      */
     property string iconName: action ? action.iconName : ""
 
+    property string iconSource: "icon://" + iconName
+
     /*!
        Floating action buttons come in two sizes:
 
@@ -128,7 +130,7 @@ Controls.Button {
                 id: icon
 
                 anchors.centerIn: parent
-                name: control.iconName
+                source: control.iconSource
                 color: button.iconColor
                 size: Units.dp(24)
             }
