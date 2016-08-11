@@ -48,17 +48,17 @@ MouseArea {
 
     property bool showFocus: true
 
-    onPressed: {
-        createTapCircle(mouse.x, mouse.y)
-    }
-
-    onCanceled: {
-        lastCircle.removeCircle();
-    }
-
-    onReleased: {
-        lastCircle.removeCircle();
-    }
+//    onPressed: {
+//        createTapCircle(mouse.x, mouse.y)
+//    }
+//
+//    onCanceled: {
+//        lastCircle.removeCircle();
+//    }
+//
+//    onReleased: {
+//        lastCircle.removeCircle();
+//    }
 
     function createTapCircle(x, y) {
         endRadius = centered ? width/2 : radius(x, y)
