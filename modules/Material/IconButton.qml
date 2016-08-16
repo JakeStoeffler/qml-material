@@ -70,12 +70,12 @@ Item {
         anchors.centerIn: parent
 
         source: iconButton.iconSource
-        rotation: iconButton.hoverAnimation ? ink.containsMouse ? 90 : 0
-                                            : 0
-
-        Behavior on rotation {
-            NumberAnimation { duration: 200 }
-        }
+//        rotation: iconButton.hoverAnimation ? ink.containsMouse ? 90 : 0
+//                                            : 0
+//
+//        Behavior on rotation {
+//            NumberAnimation { duration: 200 }
+//        }
     }
 
 //    Tooltip {

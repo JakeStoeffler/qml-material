@@ -64,11 +64,11 @@ ButtonStyle {
             return elevation;
         }
 
-        tintColor: mouseArea.currentCircle || control.focus || control.hovered
-           ? Qt.rgba(0,0,0, mouseArea.currentCircle ? 0.1
-                            : elevation > 0 ? 0.03
-                            : 0.05)
-           : "transparent"
+//        tintColor: mouseArea.currentCircle || control.focus || control.hovered
+//           ? Qt.rgba(0,0,0, mouseArea.currentCircle ? 0.1
+//                            : elevation > 0 ? 0.03
+//                            : 0.05)
+//           : "transparent"
 
         Ink {
             id: mouseArea
