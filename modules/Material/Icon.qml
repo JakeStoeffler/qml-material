@@ -64,20 +64,9 @@ Item {
         id: image
 
         anchors.fill: parent
-        visible: source != ""// && !colorize
+        visible: source != "" && !colorize
 
-        source: {
-            if (icon.source.indexOf("icon://") == 0) {
-                var name = icon.source.substring(7)
-                var list = name.split("/");
-
-                if (name == "" || list[0] === "awesome")
-                    return "";
-                return Qt.resolvedUrl("icons/%1/%2.svg".arg(list[0]).arg(list[1]));
-            } else {
-                return icon.source
-            }
-        }
+        source: icon.source.indexOf("icon://") !== 0 ? icon.source : ""
 
         sourceSize {
             width: size * Screen.devicePixelRatio
@@ -85,27 +74,49 @@ Item {
         }
     }
 
-//    ColorOverlay {
-//        id: overlay
-//
-//        anchors.fill: parent
-//        source: image
-//        color: Theme.alpha(icon.color, 1)
-//        cached: true
-//        visible: image.source != "" && colorize
-//        opacity: icon.color.a
-//    }  
+    ColorOverlay {
+        id: overlay
+
+        anchors.fill: parent
+        source: image
+        color: Theme.alpha(icon.color, 1)
+        cached: true
+        visible: image.source != "" && colorize
+        opacity: icon.color.a
+    }  
+
+    MaterialIcon {
+        id: materialIcon
+
+        anchors.centerIn: parent
+        size: icon.size * 0.9
+        visible: name !== "" && !awesomeIcon.visible
+        color: icon.color
+
+        name: {
+            if (icon.source.indexOf("icon://") === 0) {
+                var name = icon.source.substring(7)
+                var list = name.split("/")
+
+                if (list[0] && list[0] !== "awesome") {
+                    return list[1]
+                }
+            }
+
+            return ""
+        }
+    }
 
     AwesomeIcon {
         id: awesomeIcon
 
         anchors.centerIn: parent
         size: icon.size * 0.9
-        visible: name != ""
+        visible: name !== ""
         color: icon.color
 
         name: {
-            if (icon.source.indexOf("icon://") == 0) {
+            if (icon.source.indexOf("icon://") === 0) {
                 var name = icon.source.substring(7)
                 var list = name.split("/")
 

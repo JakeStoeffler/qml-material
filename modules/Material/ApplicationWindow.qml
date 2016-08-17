@@ -127,6 +127,9 @@ Controls.ApplicationWindow {
         id: overlayLayer
     }
 
+    FontLoader { id: materialFont; source: Qt.resolvedUrl("fonts/material/MaterialIcons-Regular.ttf") }
+    FontLoader { id: fontAwesome; source: Qt.resolvedUrl("fonts/fontawesome/FontAwesome.otf") }
+
     width: Units.dp(800)
     height: Units.dp(600)
 
