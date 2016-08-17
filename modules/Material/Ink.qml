@@ -33,17 +33,20 @@ MouseArea {
     hoverEnabled: false
     z: 2
 
-    onPressed: pressedBackground.opacity = 1
-    onCanceled: pressedBackground.opacity = 0
-    onReleased: pressedBackground.opacity = 0
+    onPressed: {
+        pressedBgTimer.stop()
+        pressedBackground.opacity = 1
+    }
+    onCanceled: pressedBgTimer.start()
+    onReleased: pressedBgTimer.start()
 
-    property int startRadius: circular ? width/10 : width/6
+    property int startRadius
     property int endRadius
     property Item lastCircle
-    property color color: Qt.rgba(0,0,0,0.1)
+    property color color
     property bool circular: false
     property bool centered: false
-    property int focusWidth: width - Units.dp(32)
+    property int focusWidth: 0
     property bool focused
     property color focusColor: "transparent"
     property bool showFocus: true
@@ -57,4 +60,9 @@ MouseArea {
         radius: circular ? parent.width/2 : 0
     }
 
+    Timer {
+        id: pressedBgTimer
+        interval: 125
+        onTriggered: pressedBackground.opacity = 0
+    }
 }
