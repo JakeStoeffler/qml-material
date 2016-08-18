@@ -89,7 +89,7 @@ Item {
         id: materialIcon
 
         anchors.centerIn: parent
-        size: icon.size * 0.9
+        size: icon.size
         visible: name !== "" && !awesomeIcon.visible
         color: icon.color
 
@@ -97,8 +97,9 @@ Item {
             if (icon.source.indexOf("icon://") === 0) {
                 var name = icon.source.substring(7)
                 var list = name.split("/")
-
-                if (list[0] && list[0] !== "awesome") {
+                if (name.indexOf("unicode") === 0) {
+                    return name.substring(8) // grab just the unicode
+                } else if (list[0] && list[0] !== "awesome") {
                     return list[1]
                 }
             }

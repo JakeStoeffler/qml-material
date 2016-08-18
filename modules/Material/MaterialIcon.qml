@@ -32,19 +32,19 @@ Item {
 
     property string name
 
-    property alias color: text.color
+    property alias color: textEl.color
     property int size: Units.dp(24)
 
-    width: text.width
-    height: text.height
+    width: textEl.width
+    height: textEl.height
 
-    property alias weight: text.font.weight
+    property alias weight: textEl.font.weight
 
     Text {
-        id: text
+        id: textEl
         anchors.centerIn: parent
 
-        font.family: "Material Icons"
+        font.family: text.length === 1 ? "Material Design Icons" : "Material Icons"
         text: widget.name
         color: Theme.light.iconColor
         font.pixelSize: widget.size

@@ -127,7 +127,13 @@ Controls.ApplicationWindow {
         id: overlayLayer
     }
 
+    // Downloaded from https://codeload.github.com/google/material-design-icons/zip/2.2.0
     FontLoader { id: materialFont; source: Qt.resolvedUrl("fonts/material/MaterialIcons-Regular.ttf") }
+
+    // Downloaded from https://materialdesignicons.com - v1.6.50
+    // https://codeload.github.com/Templarian/MaterialDesign-Webfont/zip/master
+    FontLoader { id: materialFontAll; source: Qt.resolvedUrl("fonts/material/materialdesignicons-webfont.ttf") }
+
     FontLoader { id: fontAwesome; source: Qt.resolvedUrl("fonts/fontawesome/FontAwesome.otf") }
 
     width: Units.dp(800)
