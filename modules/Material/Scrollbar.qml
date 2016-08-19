@@ -30,6 +30,7 @@ Item {
     property int orientation: Qt.Vertical
     property int thickness: 5
     property bool moving: flickableItem.moving
+    property bool alwaysShow: true
 
     width: thickness
     height: thickness
@@ -46,9 +47,12 @@ Item {
         margins: 2
     }
 
-    Component.onCompleted: hideAnimation.start()
+    Component.onCompleted: {
+        if (!alwaysShow) hideAnimation.start()
+    }
 
     onMovingChanged: {
+        if (alwaysShow) return;
         if (moving) {
             hideAnimation.stop()
             showAnimation.start()
@@ -81,9 +85,10 @@ Item {
     }
 
     function flashScrollbar() {
-        showAnimation.start()
-        showAnimation.complete()
-        hideAnimation.start()
+        if (alwaysShow) return;
+        showAnimation.start();
+        showAnimation.complete();
+        hideAnimation.start();
     }
 
     onOrientationChanged: {
