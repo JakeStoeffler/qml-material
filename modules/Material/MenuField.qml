@@ -151,7 +151,7 @@ Item {
                     tintColor: (field.tintSelected && listView.currentIndex == index) ? field.tintColor : Qt.rgba(0,0,0,0)
                     onClicked: {
                         itemSelected(index)
-                        listView.currentIndex = index
+                        //listView.currentIndex = index
                         menu.close()
                     }
                 }
