@@ -211,33 +211,35 @@ Item {
         })
     }
 
-    IconButton {
-        id: leftItem
-
+    Ink {
+        id: backInk
         anchors {
-            verticalCenter: actionsRow.verticalCenter
             left: parent.left
-            leftMargin: leftItem.show ? Units.dp(16) : -leftItem.width
+            top: parent.top
+        }
+        width: label.contentWidth + Units.dp(72)
+        height: parent.implicitHeight
+        visible: backAction && backAction.visible
+        onClicked: leftItem.clicked()
 
-            Behavior on leftMargin {
-                NumberAnimation { duration: 200 }
+        IconButton {
+            id: leftItem
+
+            anchors {
+                verticalCenter: backInk.verticalCenter
+                left: parent.left
+                leftMargin: Units.dp(16)
             }
+
+            color: Theme.lightDark(actionBar.backgroundColor, Theme.light.iconColor,
+                                                                Theme.dark.iconColor)
+            size: Units.dp(24)
+            action: backAction
+            enabled: false
+            opacity: 1
         }
-
-        color: Theme.lightDark(actionBar.backgroundColor, Theme.light.iconColor,
-                                                            Theme.dark.iconColor)
-        size: Units.dp(24)
-        action: backAction
-
-        opacity: show ? enabled ? 1 : 0.6 : 0
-        visible: opacity > 0
-
-        Behavior on opacity {
-            NumberAnimation { duration: 200 }
-        }
-
-        property bool show: backAction && backAction.visible
     }
+    
 
     Label {
         id: label
@@ -246,12 +248,8 @@ Item {
             verticalCenter: actionsRow.verticalCenter
             left: parent.left
             right: actionsRow.left
-            leftMargin: leftItem.show ? Units.dp(72) : Units.dp(16)
+            leftMargin: backInk.visible ? Units.dp(56) : Units.dp(16)
             rightMargin: Units.dp(16)
-
-            Behavior on leftMargin {
-                NumberAnimation { duration: 200 }
-            }
         }
 
         visible: customContentView.children.length === 0
