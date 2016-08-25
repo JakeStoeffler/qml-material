@@ -286,8 +286,7 @@ Item {
 
                 action: __internal.visibleActions[index]
 
-                color: Theme.lightDark(actionBar.backgroundColor, Theme.light.iconColor,
-                                                                  Theme.dark.iconColor)
+                color: action.customColor ? action.iconColor : Theme.lightDark(actionBar.backgroundColor, Theme.light.iconColor, Theme.dark.iconColor)
                 size: iconSource == "icon://content/add" ? Units.dp(27) : Units.dp(24)
 
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined

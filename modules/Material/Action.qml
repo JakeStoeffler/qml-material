@@ -46,6 +46,9 @@ Controls.Action {
      */
     property string iconSource: "icon://" + iconName
 
+    property bool customColor: false
+    property color iconColor
+
     /*!
        The text displayed for the action.
      */
