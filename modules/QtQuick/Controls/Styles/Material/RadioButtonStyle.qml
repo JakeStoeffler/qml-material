@@ -33,7 +33,7 @@ RadioButtonStyle {
 
     label: Label {
         text: control.text
-        style: "button"
+        style: "subheading"
         color: control.enabled ? style.darkBackground ? Theme.dark.textColor
                                                         : Theme.light.textColor
                                : style.darkBackground ? Theme.alpha("#fff", 0.30)
