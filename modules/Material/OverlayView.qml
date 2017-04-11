@@ -53,15 +53,15 @@ PopupBase {
         }
     ]
 
-    transitions: Transition {
-        from: "*"; to: "*"
+    //transitions: Transition {
+    //    from: "*"; to: "*"
 
-        NumberAnimation {
-            target: overlay
-            properties: "x,y,width,height"
-            duration: 300; easing.type: Easing.InOutQuad
-        }
-    }
+        //NumberAnimation {
+        //    target: overlay
+        //    properties: "x,y,width,height"
+        //    duration: 300; easing.type: Easing.InOutQuad
+        //}
+    //}
 
     property Item sourceView
 
@@ -89,10 +89,10 @@ PopupBase {
         opacity: showing ? 1 : 0
         elevation: 5
 
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 300; easing.type: Easing.InOutQuad
-            }
-        }
+        //Behavior on opacity {
+        //    NumberAnimation {
+        //        duration: 300; easing.type: Easing.InOutQuad
+        //    }
+        //}
     }
 }

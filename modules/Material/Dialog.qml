@@ -83,14 +83,14 @@ PopupBase {
         centerIn: parent
         verticalCenterOffset: showing ? 0 : -(dialog.height/3)
 
-        Behavior on verticalCenterOffset {
-            NumberAnimation { duration: 200 }
-        }
+        //Behavior on verticalCenterOffset {
+        //    NumberAnimation { duration: 200 }
+        //}
     }
 
-    Behavior on opacity {
-        NumberAnimation { duration: 200 }
-    }
+    //Behavior on opacity {
+    //    NumberAnimation { duration: 200 }
+    //}
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Escape) {

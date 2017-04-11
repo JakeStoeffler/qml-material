@@ -50,12 +50,12 @@ Rectangle {
         }
     }
 
-    transitions: Transition {
-        ColorAnimation {
-            duration: 300
-            easing.type: Easing.InOutQuad
-        }
-    }
+    //transitions: Transition {
+    //    ColorAnimation {
+    //        duration: 300
+    //        easing.type: Easing.InOutQuad
+    //    }
+    //}
 
     function closeIfNecessary() {
         if (overlayLayer.currentOverlay != null && overlayLayer.currentOverlay.closeOnResize)
