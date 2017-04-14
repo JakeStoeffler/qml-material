@@ -41,11 +41,12 @@ View {
 
     property alias text: label.text
     property alias style: label.style
+    property alias color: label.color
 
     Label {
         id: label
 
-        style: "body1"
+        style: "body2"
 
         anchors {
             verticalCenter: parent.verticalCenter
