@@ -84,6 +84,11 @@ Controls.ApplicationWindow {
      */
     property alias theme: __theme
 
+	property int leftFrameSize: 0
+	property int rightFrameSize: 0
+	property int topFrameSize: 0
+	property int bottomFrameSize: 0
+
     AppTheme {
         id: __theme
     }
@@ -98,11 +103,13 @@ Controls.ApplicationWindow {
         id: __pageStack
         anchors {
             left: parent.left
+			leftMargin: leftFrameSize
             right: parent.right
+			rightMargin: rightFrameSize
             top: __toolbar.bottom
             bottom: parent.bottom
+			bottomMargin: bottomFrameSize
         }
-
         onPushed: __toolbar.push(page)
         onPopped: __toolbar.pop(page)
         onReplaced: __toolbar.replace(page)
@@ -110,21 +117,59 @@ Controls.ApplicationWindow {
 
     Toolbar {
         id: __toolbar
+		anchors {
+            left: parent.left
+			leftMargin: leftFrameSize
+            right: parent.right
+			rightMargin: rightFrameSize
+			top: parent.top
+			topMargin: topFrameSize
+        }
         clientSideDecorations: app.clientSideDecorations
     }
 
     OverlayLayer {
         id: dialogOverlayLayer
         objectName: "dialogOverlayLayer"
+		anchors {
+            left: parent.left
+			leftMargin: leftFrameSize
+            right: parent.right
+			rightMargin: rightFrameSize
+			top: parent.top
+			topMargin: topFrameSize
+            bottom: parent.bottom
+			bottomMargin: bottomFrameSize
+        }
     }
 
     OverlayLayer {
         id: tooltipOverlayLayer
         objectName: "tooltipOverlayLayer"
+		anchors {
+            left: parent.left
+			leftMargin: leftFrameSize
+            right: parent.right
+			rightMargin: rightFrameSize
+			top: parent.top
+			topMargin: topFrameSize
+            bottom: parent.bottom
+			bottomMargin: bottomFrameSize
+        }
     }
 
     OverlayLayer {
         id: overlayLayer
+		anchors {
+            left: parent.left
+			leftMargin: leftFrameSize
+            right: parent.right
+			rightMargin: rightFrameSize
+			top: parent.top
+			topMargin: topFrameSize
+            bottom: parent.bottom
+			bottomMargin: bottomFrameSize
+        }
     }
 
     // Downloaded from https://codeload.github.com/google/material-design-icons/zip/2.2.0
