@@ -61,6 +61,9 @@ Item {
     property bool alignDropdownWithSelected: true
     property bool tintSelected: false
 
+	property bool forceYOffset: false
+	property int forceYOffsetPx: 0
+
     readonly property rect inputRect: Qt.rect(spinBox.x, spinBox.y, spinBox.width, spinBox.height)
 
     signal itemSelected(int index)
@@ -69,7 +72,10 @@ Item {
         anchors.fill: parent
         onClicked: {
             var yOffset = 0;
-            if (alignDropdownWithSelected) {
+			if (field.forceYOffset) {
+				listView.positionViewAtBeginning();
+				yOffset = field.forceYOffsetPx;
+			} else if (alignDropdownWithSelected) {
                 listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
                 yOffset = -listView.currentItem.itemLabel.mapToItem(menu, 0, 0).y
             } else {
