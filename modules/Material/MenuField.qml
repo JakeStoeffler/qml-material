@@ -68,22 +68,24 @@ Item {
 
     signal itemSelected(int index)
 
-    Ink {
-        anchors.fill: parent
-        onClicked: {
-            var yOffset = 0;
-			if (field.forceYOffset) {
-				listView.positionViewAtBeginning();
-				yOffset = field.forceYOffsetPx;
-			} else if (alignDropdownWithSelected) {
-                listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
-                yOffset = -listView.currentItem.itemLabel.mapToItem(menu, 0, 0).y
-            } else {
-                listView.positionViewAtBeginning()
-            }
-            menu.open(label, 0, yOffset)
-        }
-    }
+    function open() {                                                           
+        var yOffset = 0;                                                        
+        if (field.forceYOffset) {                                               
+            listView.positionViewAtBeginning();                                 
+            yOffset = field.forceYOffsetPx;                                     
+        } else if (alignDropdownWithSelected) {                                 
+            listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
+            yOffset = -listView.currentItem.itemLabel.mapToItem(menu, 0, 0).y   
+        } else {                                                                
+            listView.positionViewAtBeginning()                                  
+        }                                                                       
+        menu.open(label, 0, yOffset)                                            
+    }                                                                           
+                                                                                
+    Ink {                                                                       
+        anchors.fill: parent                                                    
+        onClicked: field.open()                                                 
+    } 
 
     Item {
         id: spinBox
